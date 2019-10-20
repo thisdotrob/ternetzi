@@ -6,7 +6,7 @@ function transactionDate(row) {
 
 function reference(row) {
     // 'Reference: AT192610037000010561046' -> 'AT192610037000010561046'
-    return row.reference.substr(10)
+    return row.reference.substr(11)
 }
 
 function minorUnits(row) {
