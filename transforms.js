@@ -11,7 +11,7 @@ function reference(row) {
 
 function minorUnits(row) {
     // ' -57.01' -> -5701
-    return (parseFloat(row.amount) * 1000) / 10
+    return parseInt(parseFloat(row.amount) * 100)
 }
 
 function counterPartyName(row) {

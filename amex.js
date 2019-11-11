@@ -5,17 +5,23 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const scrape = async () => {
   console.log("Opening browser...");
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   const screenshot = async tag => {
     await page.screenshot({path: 'screenshot-' + tag + '.png'});
   };
 
+  await page.setViewport({
+    width: 1024,
+    height: 768,
+    deviceScaleFactor: 1,
+  });
+
   console.log("Visiting amex statement export page...");
   await Promise.all([
     page.waitForNavigation(),
-    page.goto("https://global.americanexpress.com/myca/intl/download/emea/download.do?BPIndex=0&request_type=&inav=gb_myca_pc_statement_export_statement_data&Face=en_GB&sorted_index=1")
+    page.goto("https://global.americanexpress.com/myca/intl/download/emea/download.do?BPIndex=0&request_type=&inav=gb_myca_pc_statement_export_statement_data&Face=en_GB&sorted_index=0")
   ]);
   await screenshot("00");
 
@@ -36,14 +42,14 @@ const scrape = async () => {
   await screenshot("04");
 
   console.log("Selecting BA card");
-  await page.click("#selectCard11");
+  await page.click("#selectCard10");
   await screenshot("05");
 
   console.log("Selecting all periods");
-  await page.click("#radioid10");
-  await page.click("#radioid11");
-  await page.click("#radioid12");
-  await page.click("#radioid13");
+  await page.click("#radioid00");
+  await page.click("#radioid01");
+  await page.click("#radioid02");
+  await page.click("#radioid03");
   await screenshot("06");
 
   await page._client.send("Page.setDownloadBehavior", {
@@ -52,7 +58,7 @@ const scrape = async () => {
   });
 
   console.log("Starting download...");
-  await page.evaluate(() => formSubmit1('2','4'));
+  await page.click(".blueButtonCenter");
 
   console.log("Waiting for download to finish...");
   await new Promise((resolve, reject) => {
