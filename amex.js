@@ -31,10 +31,10 @@ const scrape = async () => {
   await screenshot("01");
 
   console.log("Logging in...");
-  await page.type("#lilo_userName", process.env.AMEX_USERNAME);
-  await page.type("#lilo_password", process.env.AMEX_PASSWORD);
+  await page.type("#eliloUserID", process.env.AMEX_USERNAME);
+  await page.type("#eliloPassword", process.env.AMEX_PASSWORD);
   await screenshot("02");
-  await Promise.all([page.waitForNavigation(), page.click("#lilo_formSubmit")]);
+  await Promise.all([page.waitForNavigation(), page.click("#loginSubmit")]);
   await screenshot("03");
 
   console.log("Selecting CSV");
