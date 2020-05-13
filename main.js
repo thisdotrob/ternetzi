@@ -6,8 +6,8 @@ const db = require("./db");
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const main = async () => {
-    await amex.scrape()
-    const csvRows = await csv.read("ofx.csv")
+    //await amex.scrape()
+    const csvRows = await csv.read("missed_transactions.csv")
     console.log("Converting csv rows to db rows")
     const dbRows = csvRows.map(r => ({
         reference: transforms.reference(r),

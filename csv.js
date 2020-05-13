@@ -6,7 +6,7 @@ function read(filename) {
         console.log("Parsing csv file")
         const results = []
         fs.createReadStream(filename)
-            .pipe(csv(['transactionDate', 'reference', 'amount', 'counterPartyName', 'info', 'unused']))
+            .pipe(csv(['transactionDate', 'processDate', 'counterPartyName', 'amount', 'unused']))
             .on('data', (data) => results.push(data))
             .on('end', () => {
                 resolve(results)

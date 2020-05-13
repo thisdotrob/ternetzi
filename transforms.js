@@ -1,16 +1,24 @@
 function transactionDate(row) {
-    // '17/09/2019' -> '2019-09-17'
-    const split = row.transactionDate.split('/')
-    return [split[2], split[1], split[0]].join('-')
+    // 'Feb 1'  -> '2020-02-01'
+    // 'Jan 29' -> '2020-01-29'
+    const split = row.transactionDate.split(' ')
+    const months = {Jan: '01', Feb: '02'}
+    const month = months[split[0]]
+    const day = ("0" + split[1]).substr(-2)
+    return ['2020', month, day].join('-')
 }
 
+let startRef = 100000000000000
+
 function reference(row) {
-    // 'Reference: AT192610037000010561046' -> 'AT192610037000010561046'
-    return row.reference.substr(11)
+    // Auto incrementing string
+    const ref = "MANENTRY" + startRef
+    startRef += 1
+    return ref
 }
 
 function minorUnits(row) {
-    // ' -57.01' -> -5701
+    // '-57.01' -> -5701
     return parseInt(parseFloat(row.amount) * 100)
 }
 
@@ -19,15 +27,17 @@ function counterPartyName(row) {
 }
 
 function processDate(row) {
-    // 'DATACASH DATACASH Process Date 15/09/2019  DATACASH DATACASH' -> '2019-09-15'
-    const dateStr = row.info.match(/Process Date ([0-9]{2}\/[0-9]{2}\/[0-9]{4})/)[1]
-    const split = dateStr.split('/')
-    return [split[2], split[1], split[0]].join('-')
+    // 'Feb 1'  -> '2020-02-01'
+    // 'Jan 29' -> '2020-01-29'
+    const split = row.processDate.split(' ')
+    const months = {Jan: '01', Feb: '02'}
+    const month = months[split[0]]
+    const day = ("0" + split[1]).substr(-2)
+    return ['2020', month, day].join('-')
 }
 
 function description(row) {
-    // 'DATACASH DATACASH Process Date 15/09/2019  DATACASH DATACASH' -> 'DATACASH DATACASH DATACASH DATACASH'
-    return row.info.replace(/ Process Date [0-9]{2}\/[0-9]{2}\/[0-9]{4} /, '')
+    return null;
 }
 
 module.exports = {
