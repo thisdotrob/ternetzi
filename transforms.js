@@ -26,8 +26,9 @@ function processDate(row) {
 }
 
 function description(row) {
-    // 'DATACASH DATACASH Process Date 15/09/2019  DATACASH DATACASH' -> 'DATACASH DATACASH DATACASH DATACASH'
-    return row.info.replace(/ Process Date [0-9]{2}\/[0-9]{2}\/[0-9]{4} /, '')
+    // 'DATACASH DATACASH Process Date 15/09/2019  DATACASH DATACASH' -> 'DATACASH DATACASH   DATACASH DATACASH'
+    // ' Process Date 15/09/2019' -> ' '
+    return row.info.replace(/Process Date [0-9]{2}\/[0-9]{2}\/[0-9]{4}/, '')
 }
 
 module.exports = {

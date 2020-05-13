@@ -3,8 +3,6 @@ const csv = require("./csv");
 const transforms = require("./transforms");
 const db = require("./db");
 
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 const main = async () => {
     await amex.scrape()
     const csvRows = await csv.read("ofx.csv")

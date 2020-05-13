@@ -25,9 +25,9 @@ const scrape = async () => {
   ]);
   await screenshot("00");
 
-  console.log("Clicking away euc mask...");
-  await page.waitForSelector("#euc_mask", { visible: true })
-  await page.click("#euc_mask")
+  console.log("Clicking away cookie notice...");
+  await page.waitForSelector("#sprite-AcceptButton_EN", { visible: true })
+  await page.click("#sprite-AcceptButton_EN")
   await screenshot("01");
 
   console.log("Logging in...");
