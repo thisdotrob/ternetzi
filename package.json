@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csv-parser": "^2.3.1",
-    "pg": "^7.12.1",
-    "puppeteer": "^1.20.0"
+    "csv-parser": "^2.3.2",
+    "pg": "^7.18.2",
+    "puppeteer": "^3.0.4"
   }
 }
