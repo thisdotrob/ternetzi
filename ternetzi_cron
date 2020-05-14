@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export AMEX_USERNAME="CHANGEME"
+export AMEX_PASSWORD="CHANGEME"
+export PGUSER="CHANGEME"
+export PGHOST="change.me.pls"
+export PGPASSWORD="CHANGEME"
+export PGDATABASE="CHANGEME"
+export PGPORT="CHANGEME"
+
+export USERNAME="ubuntu"
+
+export NVM_DIR="/home/$USERNAME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+/usr/local/bin/ternetzi >> /home/$USERNAME/ternetzi.log 2>&1
