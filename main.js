@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require("fs");
 const amex = require("./amex");
 const csv = require("./csv");

@@ -13,5 +13,8 @@
     "csv-parser": "^2.3.2",
     "pg": "^8.2.0",
     "puppeteer": "^3.0.4"
+  },
+  "bin": {
+    "ternetzi": "./main.js"
   }
 }
