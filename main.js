@@ -1,3 +1,4 @@
+const fs = require("fs");
 const amex = require("./amex");
 const csv = require("./csv");
 const transforms = require("./transforms");
@@ -5,7 +6,7 @@ const db = require("./db");
 
 const main = async () => {
     await amex.scrape()
-    const csvRows = await csv.read("ofx.csv")
+    const csvRows = await csv.read("/tmp/ofx.csv")
     console.log("Converting csv rows to db rows")
     const dbRows = csvRows.map(r => ({
         reference: transforms.reference(r),
@@ -18,6 +19,8 @@ const main = async () => {
     await db.connect()
     await Promise.all(dbRows.map(db.insert))
     await db.end()
+    console.log("Removing temporary file...");
+    fs.unlinkSync("/tmp/ofx.csv");
 };
 
 main()

@@ -86,12 +86,6 @@ const scrape = async () => {
 
   console.log("Closing browser...");
   await browser.close();
-
-  console.log("Moving file...");
-  fs.copyFileSync("/tmp/ofx.csv", "./ofx.csv");
-
-  console.log("Removing temporary file...");
-  fs.unlinkSync("/tmp/ofx.csv");
 };
 
 module.exports = { scrape };
