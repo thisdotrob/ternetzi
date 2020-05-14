@@ -1,6 +1,8 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 
+const TAKE_SCREENSHOTS = false;
+
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const scrape = async () => {
@@ -9,7 +11,10 @@ const scrape = async () => {
   const page = await browser.newPage();
 
   const screenshot = async tag => {
-    await page.screenshot({path: 'screenshot-' + tag + '.png'});
+    if (TAKE_SCREENSHOTS) {
+      console.log("Taking screenshot ", tag);
+      await page.screenshot({path: './screenshots/' + tag + '.png'});
+    }
   };
 
   await page.setViewport({
