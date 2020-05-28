@@ -31,11 +31,6 @@ const scrape = async () => {
   ]);
   await screenshot("00");
 
-  log.info("Clicking away cookie notice...");
-  await page.waitForSelector("#sprite-AcceptButton_EN", { visible: true })
-  await page.click("#sprite-AcceptButton_EN")
-  await screenshot("01");
-
   log.info("Logging in...");
   await page.waitForSelector("#eliloUserID", { visible: true })
   await page.type("#eliloUserID", process.env.AMEX_USERNAME);
@@ -43,6 +38,11 @@ const scrape = async () => {
   await screenshot("02");
   await Promise.all([page.waitForNavigation(), page.click("#loginSubmit")]);
   await screenshot("03");
+
+  log.info("Clicking away cookie notice...");
+  await page.waitForSelector("#sprite-AcceptButton_EN", { visible: true })
+  await page.click("#sprite-AcceptButton_EN")
+  await screenshot("01");
 
   log.info("Selecting CSV");
   await page.click("#CSV");
