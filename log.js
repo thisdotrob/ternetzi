@@ -3,7 +3,7 @@ function info(msg) {
 }
 
 function error(err) {
-  console.error(new Date(), err)
+  console.error(new Date(), err.message)
 }
 
 module.exports = { error, info }

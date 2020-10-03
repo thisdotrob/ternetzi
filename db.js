@@ -7,37 +7,61 @@ async function connect() {
 
 const sqlQuery = `
 INSERT INTO amex_transactions (
-    reference,
-    transaction_date,
-    process_date,
-    minor_units,
-    counter_party_name,
-    description
+    date,
+    description,
+    card_member,
+    account_number,
+    amount,
+    extended_details,
+    appears_on_your_statement_as,
+    address,
+    town_or_city,
+    postcode,
+    country,
+    reference
 ) VALUES (
     $1,
     $2,
     $3,
     $4,
     $5,
-    $6
+    $6,
+    $7,
+    $8,
+    $9,
+    $10,
+    $11,
+    $12
 ) ON CONFLICT (
     reference
 ) DO UPDATE SET
-    transaction_date = $2,
-    process_date = $3,
-    minor_units = $4,
-    counter_party_name = $5,
-    description = $6
+    date = $1,
+    description = $2,
+    card_member = $3,
+    account_number = $4,
+    amount = $5,
+    extended_details = $6,
+    appears_on_your_statement_as = $7,
+    address = $8,
+    town_or_city = $9,
+    postcode = $10,
+    country = $11
 `
 
 function insert(row) {
     return client.query(sqlQuery, [
-        row.reference,
-        row.transactionDate,
-        row.processDate,
-        row.minorUnits,
-        row.counterPartyName,
+        row.date,
         row.description,
+        row.cardMember,
+        row.accountNumber,
+        row.amount,
+        row.extendedDetails,
+        row.appearsOnYourStatementAs,
+        row.address,
+        row.townOrCity,
+        row.postcode,
+        row.country,
+        row.reference
     ])
 }
 

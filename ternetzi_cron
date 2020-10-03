@@ -13,4 +13,6 @@ export USERNAME="ubuntu"
 export NVM_DIR="/home/$USERNAME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-/usr/local/bin/ternetzi >> /home/$USERNAME/ternetzi.log 2>&1
+nvm use 14.2
+
+/home/$USERNAME/.nvm/versions/node/v14.2.0/bin/ternetzi >> /home/$USERNAME/ternetzi.log 2>&1

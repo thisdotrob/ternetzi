@@ -1,5 +1,5 @@
 node_modules
 .env
-ofx.csv
+download/*
 .DS_Store
 screenshots/*
